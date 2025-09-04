@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: my-django-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn myproject.wsgi:application"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+      - key: DISABLE_COLLECTSTATIC
+        value: 1
